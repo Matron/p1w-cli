@@ -1,0 +1,4 @@
+<p>-- selector-scenario --</p>
+<div *ngFor="let scenario of scenarios">
+  <div (click)="selectedScenarioId.emit(scenario.id)">{{scenario.name}}</div>
+</div>
