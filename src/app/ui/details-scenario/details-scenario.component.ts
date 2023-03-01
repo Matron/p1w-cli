@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Scenario } from 'src/app/data/models/scenario';
+import { IScenario } from '@data/models/scenario';
 
 @Component({
   selector: 'ui-details-scenario',
@@ -8,6 +8,6 @@ import { Scenario } from 'src/app/data/models/scenario';
 })
 export class DetailsScenarioComponent {
 @Input()
-scenario: Scenario | undefined;
+scenario: IScenario | undefined;
 
 }

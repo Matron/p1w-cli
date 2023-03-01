@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ScenarioListItem } from 'src/app/data/models/scenario-list-item';
+import { IScenarioListItem } from '@data/models/scenario-list-item';
 
 @Component({
   selector: 'ui-selector-scenario',
@@ -9,7 +8,7 @@ import { ScenarioListItem } from 'src/app/data/models/scenario-list-item';
 })
 export class SelectorScenarioComponent {
   @Input()
-  scenarios: ScenarioListItem[] | null;
+  scenarios: IScenarioListItem[] | null;
 
   @Output()
   selectedScenarioId = new EventEmitter<number>();

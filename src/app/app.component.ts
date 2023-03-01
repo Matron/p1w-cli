@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BehaviorSubject, of, switchMap, tap } from 'rxjs';
-import { DataService } from './data/data.service';
+import { DataService } from '@data/data.service';
+import { IMapData } from '@map/models/map-data';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,9 @@ import { DataService } from './data/data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  @Input()
+  mapDetails: IMapData;
 
   public scenarioList$ = this.dataService.scenarios$;
   
@@ -17,8 +21,7 @@ export class AppComponent {
       if (id) {
         return this.dataService.loadScenario(id).pipe(
           tap(data => {
-            console.log('we have data ', data);
-            console.log('time to init the engine, the map and the clock!');
+            console.log('we have new scenario data: ', data);
           })
         )
       } else {
@@ -27,5 +30,7 @@ export class AppComponent {
     })
   )
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+  ) {}
 }

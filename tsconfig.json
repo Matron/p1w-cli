@@ -2,7 +2,13 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
+    "paths": {
+      "@ui/*": ["app/ui/*"],
+      "@data/*": ["app/data/*"],
+      "@ecs/*": ["app/ecs/*"],
+      "@map/*": ["app/map/*"]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

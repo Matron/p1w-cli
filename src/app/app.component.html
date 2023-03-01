@@ -1,3 +1,4 @@
 <h1>App Component</h1>
 <ui-details-scenario [scenario]="(currentScenario$ | async) || undefined"></ui-details-scenario> 
 <ui-selector-scenario [scenarios]="scenarioList$ | async" (selectedScenarioId)="this.actionSelectScenario$.next($event);"></ui-selector-scenario>
+<app-map *ngIf="currentScenario$ | async"></app-map>

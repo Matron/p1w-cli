@@ -1,9 +1,9 @@
-export interface Scenario {
+import { IMapData } from "@map/models/map-data";
+
+export interface IScenario {
   id: number,
   name: string,
   description: string,
   startDate: number,
-  map: {
-    backgroundImage: string
-  }
+  mapData: IMapData
 }
