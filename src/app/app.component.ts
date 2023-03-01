@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { BehaviorSubject, of, switchMap, tap } from 'rxjs';
 import { DataService } from '@data/data.service';
-import { IMapData } from '@map/models/map-data';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +8,6 @@ import { IMapData } from '@map/models/map-data';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  @Input()
-  mapDetails: IMapData;
 
   public scenarioList$ = this.dataService.scenarios$;
   

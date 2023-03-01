@@ -1,20 +1,25 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Entity } from '@ecs/models/entity';
+import { IMapData } from '@map/models/map-data';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent extends Entity implements AfterViewInit {
+export class MapComponent extends Entity implements AfterViewInit, OnInit {
 
-  constructor() {
-    super();
-    console.log('new map'); 
+
+  @Input()
+  mapDetails: IMapData | undefined;
+
+  ngOnInit(): void {
+    console.log('init map with ', this.mapDetails);
+    this.awake();
   }
   
   ngAfterViewInit(): void {
-    throw new Error('Method not implemented.');
+    console.log('after view init with ', this.mapDetails);
   }
   
   public entities: Entity[] = [];
