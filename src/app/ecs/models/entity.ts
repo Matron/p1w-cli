@@ -1,9 +1,11 @@
 import { IComponent } from "./component";
 import { IUpdate } from "../lifecycle/update";
+import { IAwake } from "@ecs/lifecycle/awake";
 
 type constructorOf<T> = { new( ...args: unknown[]): T }
 
-export abstract class Entity implements IUpdate {
+export abstract class Entity implements IAwake, IUpdate {
+
   protected _components: IComponent[] = [];
 
   public get components(): IComponent[] {
@@ -43,13 +45,13 @@ export abstract class Entity implements IUpdate {
     }
   }
 
-  public awake(): void {
+  awake(): void {
     for (const comp of this._components) {
       comp.awake();
     }
-  }
+  }  
 
-  public update(deltaTime: number): void {
+  update(deltaTime: number): void {
       for (const comp of this._components) {
         comp.update(deltaTime);
       }

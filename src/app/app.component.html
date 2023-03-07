@@ -1,5 +1,14 @@
-<ui-selector-scenario [scenarios]="scenarioList$ | async" (selectedScenarioId)="this.actionSelectScenario$.next($event);"></ui-selector-scenario>
-<ng-container *ngIf="(currentScenario$ | async) as currentScenario" >
-  <ui-details-scenario [scenario]="currentScenario"></ui-details-scenario> 
-  <app-map [mapDetails]="currentScenario.mapData"></app-map>
+<div class="scenario-selector">
+  <ui-selector-scenario
+    [scenarios]="scenarioList$ | async"
+    (selectedScenarioId)="this.actionSelectScenario$.next($event)"
+  ></ui-selector-scenario>
+</div>
+<ng-container *ngIf="currentScenario$ | async as currentScenario">
+  <div class="scenario-details">
+    <ui-details-scenario [scenario]="currentScenario"></ui-details-scenario>
+  </div>
+  <div class="map-container">
+    <map-container [mapDetails]="currentScenario.mapData"></map-container>
+  </div>
 </ng-container>

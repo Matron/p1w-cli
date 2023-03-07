@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, of, switchMap, tap } from 'rxjs';
-import { DataService } from '@data/data.service';
+import { BehaviorSubject, distinctUntilChanged, of, switchMap, tap } from 'rxjs';
+import { DataService } from '@data/services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +9,16 @@ import { DataService } from '@data/data.service';
 })
 export class AppComponent {
 
-  public scenarioList$ = this.dataService.scenarios$;
+  public scenarioList$ = this._dataService.scenarios$;
   
   public actionSelectScenario$ = new BehaviorSubject<number | null>(null);
   public currentScenario$ = this.actionSelectScenario$.pipe(
+    distinctUntilChanged(),
     switchMap(id => {
       if (id) {
-        return this.dataService.loadScenario(id).pipe(
+        return this._dataService.loadScenario(id).pipe(
           tap(data => {
-            console.log('we have new scenario data: ', data);
+            console.log('switchMap - currentScenrio$ - we have new scenario data: ', data);
           })
         )
       } else {
@@ -27,6 +28,6 @@ export class AppComponent {
   )
 
   constructor(
-    private dataService: DataService,
+    private _dataService: DataService,
   ) {}
 }

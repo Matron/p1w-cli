@@ -1,5 +1,24 @@
 :host {
   display: block;
-  background-color: black;
+  background-color: rgb(32, 32, 32);
   color: lightgreen;
+  position: relative;
+  height: 100vh;
+}
+
+.scenario-selector {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.scenario-details {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.map-container {
+  position: absolute;
+  bottom: 0;
 }

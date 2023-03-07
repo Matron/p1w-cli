@@ -5,7 +5,7 @@ import { IScenarioListItem } from "../models/scenario-list-item";
 export const mockScenarioList: IScenarioListItem[] = [
   {
     id: 1,
-    name: "Scenario 1",
+    name: "AS",
     description: "Description 1"
   },
   {
@@ -18,11 +18,11 @@ export const mockScenarioList: IScenarioListItem[] = [
 export const mockScenarios: IScenario[] = [
   {
     id: 1,
-    name: "Scenario 1",
+    name: "AS",
     description: "Description 1",
-    startDate: 1,
+    startDate: 700,
     mapData: {
-      backgroundImage: 'image1',
+      backgroundImage: 'assets/images/back-as-700.jpg',
       startingPosition: { x: 100, y: 100 }
     }
   },
@@ -32,7 +32,7 @@ export const mockScenarios: IScenario[] = [
     description: "Description 2",
     startDate: 2,
     mapData: {
-      backgroundImage: 'image2',
+      backgroundImage: 'assets/images/Frankish_Empiren.png',
       startingPosition: { x: 200, y: 200 }
     }
   }

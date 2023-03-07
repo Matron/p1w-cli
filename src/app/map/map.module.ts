@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MapComponent } from './components/map.component';
+import { CanvasComponent } from './views/canvas/canvas.component';
+import { MapComponent } from './views/map/map.component';
 
 @NgModule({
   declarations: [
-    MapComponent
+    MapComponent,
+    CanvasComponent
   ],
   imports: [
     CommonModule
