@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Graphics } from './graphics.service';
+import { ClockService } from './clock.service';
 
-describe('GraphicsService', () => {
-  let service: Graphics;
+describe('ClockService', () => {
+  let service: ClockService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Graphics);
+    service = TestBed.inject(ClockService);
   });
 
   it('should be created', () => {

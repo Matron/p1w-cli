@@ -1,7 +1,7 @@
 import { IComponent } from "@ecs/models/component";
 import { MapObject } from "@map/entities/map-object";
 import { Vector2d } from "@map/models/vector-2d";
-import { Graphics } from "@map/services/graphics.service";
+import { Graphics } from "@map/services/graphics";
 
 export class DrawMapObjectComponent implements IComponent {
   entity: MapObject | null;
@@ -20,6 +20,6 @@ export class DrawMapObjectComponent implements IComponent {
   }
 
   private _draw(): void {
-    Graphics.drawCircle(new Vector2d(100, 100), 40, 'blue');
+    Graphics.drawCircle(this.entity?.getPosition()!, 10, 'darkgreen');
   }
 }

@@ -8,9 +8,9 @@ export abstract class Entity implements IAwake, IUpdate {
 
   protected _components: IComponent[] = [];
 
-  public get components(): IComponent[] {
+  /* public get components(): IComponent[] {
     return this._components;
-  }
+  } */
 
   public addComponent(component: IComponent): void {
     this._components.push(component);

@@ -4,11 +4,24 @@
     (selectedScenarioId)="this.actionSelectScenario$.next($event)"
   ></ui-selector-scenario>
 </div>
+
 <ng-container *ngIf="currentScenario$ | async as currentScenario">
-  <div class="scenario-details">
-    <ui-details-scenario [scenario]="currentScenario"></ui-details-scenario>
+  <div class="toolbar">
+    <div class="scenario-details">
+      <ui-details-scenario [scenario]="currentScenario"></ui-details-scenario>
+    </div>
+
+    <div class="clock">Year: {{ tick$ | async }}</div>
   </div>
+
+  <div class="event-selector" *ngIf="events$ | async as events">
+    <ui-selector-events [events]="events"></ui-selector-events>
+  </div>
+
   <div class="map-container">
-    <map-container [mapDetails]="currentScenario.mapData"></map-container>
+    <map-container
+      [mapDetails]="currentScenario.mapData"
+      [mapObjects]="mapObjects$ | async"
+    ></map-container>
   </div>
 </ng-container>

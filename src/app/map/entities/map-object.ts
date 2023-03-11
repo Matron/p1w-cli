@@ -7,8 +7,12 @@ export class MapObject extends Entity {
     super();
   }
 
-  override awake(): void {
+  public override awake(): void {
     this.addComponent(new DrawMapObjectComponent());
     super.awake();
+  }
+
+  public getPosition(): Vector2d {
+    return this._position;
   }
 }

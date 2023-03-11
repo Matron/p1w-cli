@@ -1,3 +1,4 @@
+import { Vector2d } from "@map/models/vector-2d";
 import { Observable, of } from "rxjs";
 import { IScenario } from "../models/scenario";
 import { IScenarioListItem } from "../models/scenario-list-item";
@@ -24,7 +25,33 @@ export const mockScenarios: IScenario[] = [
     mapData: {
       backgroundImage: 'assets/images/back-as-700.jpg',
       startingPosition: { x: 100, y: 100 }
-    }
+    },
+    events: [
+      {
+        id: 1,
+        name: 'H&H',
+        startDate: 702,
+        endDate: 710,
+        mapObjects: [
+          {
+            name: 'H&H arrive',
+            position: new Vector2d(100, 100)
+          }
+        ]
+      },
+      {
+        id: 2,
+        name: 'Artur',
+        startDate: 705,
+        endDate: 715,
+        mapObjects: [
+          {
+            name: 'Artur start',
+            position: new Vector2d(200, 200)
+          }
+        ]
+      }
+    ]
   },
   {
     id: 2,
@@ -34,7 +61,8 @@ export const mockScenarios: IScenario[] = [
     mapData: {
       backgroundImage: 'assets/images/Frankish_Empiren.png',
       startingPosition: { x: 200, y: 200 }
-    }
+    },
+    events: []
   }
 ]
 

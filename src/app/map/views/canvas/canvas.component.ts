@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { Graphics } from '@map/services/graphics.service';
+import { Graphics } from '@map/services/graphics';
 
 @Component({
   selector: 'map-canvas',
