@@ -24,7 +24,7 @@ export const mockScenarios: IScenario[] = [
     startDate: 700,
     mapData: {
       backgroundImage: 'assets/images/back-as-700.jpg',
-      startingPosition: { x: 100, y: 100 }
+      startingPosition: { x: 0, y: 0 }
     },
     events: [
       {
@@ -60,7 +60,7 @@ export const mockScenarios: IScenario[] = [
     startDate: 2,
     mapData: {
       backgroundImage: 'assets/images/Frankish_Empiren.png',
-      startingPosition: { x: 200, y: 200 }
+      startingPosition: { x: 0, y: 0 }
     },
     events: []
   }

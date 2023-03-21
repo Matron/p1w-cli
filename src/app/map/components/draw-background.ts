@@ -1,10 +1,9 @@
 import { IComponent } from '@ecs/models/component';
 import { MapBackground } from '@map/entities/map-background';
-import { Vector2d } from '@map/models/vector-2d';
 import { Graphics } from '@map/services/graphics';
 
 export class DrawBackgroundComponent implements IComponent {
-  public entity: MapBackground | null;
+  public entity: MapBackground;
 
   private _image: HTMLImageElement = new Image();
 
@@ -27,6 +26,6 @@ export class DrawBackgroundComponent implements IComponent {
   }
 
   private _draw(): void { 
-    Graphics.drawImage(this._image);
+    Graphics.drawImage(this._image, this.entity!.getBackgroundPosition());
   }
 }

@@ -1,1 +1,6 @@
-<map-canvas></map-canvas>
+<map-canvas #mapCanvas
+  (mousedown)="onMouseDown($event)" 
+  (mouseup)="onMouseUp($event)"
+  (mousemove)="onMouseMove($event)"
+  (mouseleave)="onMouseLeave($event)"
+></map-canvas>

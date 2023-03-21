@@ -11,12 +11,8 @@ export class Graphics {
     this._ctx = ctx;
   }
 
-  public static drawImage(image: CanvasImageSource): void {
-    this._ctx?.drawImage(image, 0, 0);
-/*     if (this._ctx) {
-      this._ctx.fillStyle = 'blue';
-      this._ctx?.fillRect(0, 0, 100, 100);
-    } */
+  public static drawImage(image: CanvasImageSource, position: Vector2d): void {
+    this._ctx?.drawImage(image, position.x, position.y );
   }
 
   public static drawCircle(center: Vector2d, radius: number, color = 'red'): void {

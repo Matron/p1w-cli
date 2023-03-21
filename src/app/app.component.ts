@@ -13,6 +13,9 @@ import { MapObject } from '@map/entities/map-object';
 export class AppComponent {
 
   private _events: IEvent[] | undefined = [];
+  
+  public events$ = new BehaviorSubject<IEvent[]>([]);
+  public mapObjects$ = new BehaviorSubject<IMapObject[]>([]);
 
   public tick$ = this._clock.tick$.pipe(
     tap(time => {
@@ -40,17 +43,12 @@ export class AppComponent {
     })
   );
 
-  public events$ = new BehaviorSubject<IEvent[]>([]);
-
-  public mapObjects$ = new BehaviorSubject<IMapObject[]>([]);
-
   constructor(
     private _dataService: DataService,
     private _clock: ClockService
   ) {}
 
   private _checkForEvent(time: number): void {
-    console.log('checking for event at ', time);
     if (!this._events) return;
 
     const eventos: IEvent[] = [];
