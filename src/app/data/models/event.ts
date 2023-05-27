@@ -5,7 +5,7 @@ export interface IEvent {
   name: string,
   startDate: number,
   endDate: number,
-  mapObjects: IMapObject[],
+  mapObjects: IMapObject[]
 }
 
 export interface IMapObject {

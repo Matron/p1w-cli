@@ -13,13 +13,18 @@ export const mockScenarioList: IScenarioListItem[] = [
     id: 2,
     name: "Scenario 2",
     description: "Description 2"
+  },
+  {
+    id: 3,
+    name: "Misiones Jesuitas",
+    description: "Las misiones jesuitas fueron una empresa misionera en América Latina durante los siglos XVI y XVII. Su objetivo era evangelizar y enseñar habilidades prácticas a las poblaciones indígenas. Aunque estuvieron vinculadas a aspectos negativos, también jugaron un papel importante en la protección de los indígenas de la explotación colonial y en la preservación de su cultura. En resumen, las misiones jesuitas dejaron un legado duradero en la historia y la cultura de América Latina."
   }
 ]
 
 export const mockScenarios: IScenario[] = [
   {
     id: 1,
-    name: "AS",
+    name: "Anglo Saxons",
     description: "Description 1",
     startDate: 700,
     mapData: {
@@ -30,8 +35,8 @@ export const mockScenarios: IScenario[] = [
       {
         id: 1,
         name: 'H&H',
-        startDate: 702,
-        endDate: 710,
+        startDate: -1,
+        endDate: 71000,
         mapObjects: [
           {
             name: 'H&H arrive',
@@ -42,8 +47,8 @@ export const mockScenarios: IScenario[] = [
       {
         id: 2,
         name: 'Artur',
-        startDate: 705,
-        endDate: 715,
+        startDate: -1,
+        endDate: 71000,
         mapObjects: [
           {
             name: 'Artur start',
@@ -51,18 +56,32 @@ export const mockScenarios: IScenario[] = [
           }
         ]
       }
-    ]
+    ],
+    source: 'Beade'
   },
   {
     id: 2,
-    name: "Scenario 2",
+    name: "Franks",
     description: "Description 2",
     startDate: 2,
     mapData: {
       backgroundImage: 'assets/images/Frankish_Empiren.png',
+      startingPosition: { x: 100, y: 0 }
+    },
+    events: [],
+    source: 'Grégoire de Tours'
+  },
+  {
+    id: 3,
+    name: "Las Misiones Jesuitas",
+    description: "Las misiones jesuitas fueron una empresa misionera en América Latina durante los siglos XVI y XVII. Su objetivo era evangelizar y enseñar habilidades prácticas a las poblaciones indígenas. Aunque estuvieron vinculadas a aspectos negativos, también jugaron un papel importante en la protección de los indígenas de la explotación colonial y en la preservación de su cultura. En resumen, las misiones jesuitas dejaron un legado duradero en la historia y la cultura de América Latina.",
+    startDate: 1609,
+    mapData: {
+      backgroundImage: 'assets/images/misiones.png',
       startingPosition: { x: 0, y: 0 }
     },
-    events: []
+    events: [],
+    source: ''
   }
 ]
 

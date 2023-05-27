@@ -7,5 +7,6 @@ export interface IScenario {
   description: string,
   startDate: number,
   mapData: IMapData,
-  events: IEvent[]
+  events: IEvent[],
+  source: string
 }

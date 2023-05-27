@@ -1,7 +1,8 @@
-<h3>Active Events</h3>
-<br />
-<div *ngFor="let event of events">
-  <!-- <div (click)="selectedScenarioId.emit(scenario.id)">{{ scenario.name }}</div> -->
-  <div>{{ event.startDate }} - {{ event.name }}
+<div class="card">
+  <h3>Active Events</h3>
+  <br />
+  <div *ngFor="let event of events">
+    <!-- <div (click)="selectedScenarioId.emit(scenario.id)">{{ scenario.name }}</div> -->
+    <div>{{ event.startDate }} - {{ event.name }}</div>
   </div>
 </div>

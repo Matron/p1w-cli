@@ -1,18 +1,19 @@
 import { AfterViewInit, Component, ElementRef, Input, NgZone, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { IMapObject } from '@data/models/event';
 import { Entity } from '@ecs/models/entity';
+import { MouseListenerComponent } from '@map/components/mouse-listener-component';
 import { MapBackground } from '@map/entities/map-background';
 import { MapObject } from '@map/entities/map-object';
 import { IMapData } from '@map/models/map-data';
-import { Vector2d } from '@map/models/vector-2d';
 import { CanvasComponent } from '../canvas/canvas.component';
+import { Vector2d } from '@map/models/vector-2d';
 
 @Component({
   selector: 'map-container',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent extends Entity implements AfterViewInit, OnChanges {
+export class MapContainer extends Entity implements AfterViewInit, OnChanges {
   
   @ViewChild('mapCanvas', { static: true })
   canvasElement: CanvasComponent;
@@ -22,16 +23,14 @@ export class MapComponent extends Entity implements AfterViewInit, OnChanges {
 
   @Input()
   mapObjects: IMapObject[] | null;
-  
+
   private _background: MapBackground | null = null;
   //private _layers: MapLayer[] = [];
   private _mapObjects: MapObject[] = [];
+
+  private _mouseListener: MouseListenerComponent;
   
   private _lastTimeStamp = 0;
-
-  private _dragging = false;
-  private _offsetX: number;
-  private _offsetY: number;
 
   constructor(private _ngZone: NgZone) {
     super();
@@ -39,22 +38,21 @@ export class MapComponent extends Entity implements AfterViewInit, OnChanges {
 
   ngAfterViewInit(): void {
     if (this.mapDetails) this.awake();
-    console.log('elementRef is ', this.canvasElement.canvas.nativeElement ); 
   }
   
   ngOnChanges(changes: SimpleChanges): void {
     let newMap = changes['mapDetails'];
-    let newMP = changes['mapObjects'];
+    let newObjects = changes['mapObjects'];
 
     if (newMap && !newMap.firstChange) {
       this._clearMap();
       this.awake();
     }
 
-    if(newMP && !newMP.firstChange) {
+    if(newObjects && !newObjects.firstChange) {
       this._mapObjects = [];
       for (const obj of this.mapObjects!) {
-        const mo = new MapObject(obj.position)
+        const mo = new MapObject(obj.position, this)
         this._mapObjects.push(mo);
         mo.awake();
       }
@@ -63,12 +61,15 @@ export class MapComponent extends Entity implements AfterViewInit, OnChanges {
   }
   
   public override awake(): void {
-      console.log('Awaking map with ', this.mapDetails);
+      console.log('awake MapContainer with ', this.mapDetails);
       
+      this._mouseListener = new MouseListenerComponent();
+      this.addComponent(this._mouseListener);
+
       super.awake();
 
       if (this.mapDetails?.backgroundImage) {
-        this._background = new MapBackground(this.mapDetails);
+        this._background = new MapBackground(this.mapDetails, this);
       }
       this._background?.awake();
 
@@ -78,7 +79,7 @@ export class MapComponent extends Entity implements AfterViewInit, OnChanges {
       } */
 
       for (const obj of this.mapObjects!) {
-        this._mapObjects.push(new MapObject(obj.position));
+        this._mapObjects.push(new MapObject(obj.position, this));
       }
 
       window.requestAnimationFrame(() => {
@@ -109,48 +110,39 @@ export class MapComponent extends Entity implements AfterViewInit, OnChanges {
       this._ngZone.runOutsideAngular(() => window.requestAnimationFrame(() => this.update()) );
   }
 
+  onClick(e: MouseEvent): void {
+    this._mouseListener.onClick(e);
+  }
+  
+  onMouseDown(e: MouseEvent): void {
+    this._mouseListener.onMouseDown(e);
+  }
+  
+  onMouseLeave(e: MouseEvent): void {
+    this._mouseListener.onMouseLeave(e);
+  }
+
+  onMouseMove(e: MouseEvent): void {
+    this._mouseListener.onMouseMove(e);
+  }
+  
+  onMouseUp(e: MouseEvent): void {
+    this._mouseListener.onMouseUp(e);
+  }
+
+  /* public getOffset(): Vector2d {
+    return new Vector2d(0,0);
+  } */
+
+  getElement(): ElementRef<any> {
+    return this.canvasElement.canvas;
+  }
+
   private _clearMap():void {
     this._background = null;
     //this._layers = [];
     this._mapObjects = [];
+    this._components = [];
   }
 
-  onMouseDown(e: MouseEvent): void {
-    if (this._background) {    
-      const startPos =  this._background.getBackgroundPosition();
-      this._offsetX =  e.clientX - startPos.x;
-      this._offsetY =  e.clientY - startPos.y;
-
-      this._dragging = true
-    }
-  }
-  
-  onMouseUp(e: MouseEvent): void {
-    this._dragging = false;
-  }
-
-  onMouseMove(e: MouseEvent): void {
-    if (this._dragging && this._background) {    
-      const localPos = this._calcLocalPointFrom({ x: e.clientX,y:  e.clientY});
-      if (localPos){
-        this._background.setBackgroundPosition(new Vector2d( e.clientX - this._offsetX, e.clientY - this._offsetY));
-      }
-    }
-  }
-
-  onMouseLeave(e: MouseEvent): void {
-    this._dragging = false;
-  }
-
-  private _calcLocalPointFrom(globalPoint: Vector2d): Vector2d | null {
-    const elementRect = this.canvasElement.canvas.nativeElement.getBoundingClientRect();
-    const x = globalPoint.x - elementRect.left;
-    const y = globalPoint.y - elementRect.top - 2;
-
-    if(x < 0 || y < 0){
-      return null
-    }
-
-    return new Vector2d(x, y)
-  }
 }

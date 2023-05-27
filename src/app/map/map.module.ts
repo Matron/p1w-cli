@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CanvasComponent } from './views/canvas/canvas.component';
-import { MapComponent } from './views/map/map.component';
+import { MapContainer } from './views/map/map.component';
 
 @NgModule({
   declarations: [
-    MapComponent,
+    MapContainer,
     CanvasComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    MapComponent
+    MapContainer
   ]
 })
 export class MapModule { }

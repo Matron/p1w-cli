@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MapContainer } from './map.component';
+import { GeneralFormComponent } from './general-form.component';
 
-describe('MapComponent', () => {
-  let component: MapContainer;
-  let fixture: ComponentFixture<MapContainer>;
+describe('GeneralFormComponent', () => {
+  let component: GeneralFormComponent;
+  let fixture: ComponentFixture<GeneralFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MapContainer ]
+      declarations: [ GeneralFormComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MapContainer);
+    fixture = TestBed.createComponent(GeneralFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

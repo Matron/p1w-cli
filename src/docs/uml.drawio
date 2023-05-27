@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="VgLAo6fLAIfAVf-dxMtZ" name="Page-1">
-        <mxGraphModel dx="2705" dy="1943" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="2412" dy="1820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -19,14 +19,14 @@
                 <mxCell id="13" value="1 -- *" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=open;endFill=0;startArrow=open;startFill=0;" parent="1" source="2" target="10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="2" value="&lt;i&gt;Entity&lt;br&gt;&lt;/i&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;-_components&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;+addComponent()&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;+getComponent()&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;+removeComponent()&lt;/div&gt;&lt;div style=&quot;font-style: italic; text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-style: italic; text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                <mxCell id="2" value="&lt;i&gt;Entity&lt;br&gt;&lt;/i&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;-_components&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;+addComponent()&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;+getComponent()&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;+removeComponent()&lt;/div&gt;&lt;div style=&quot;font-style: italic; text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-style: italic; text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#8CA5BD;fontColor=#ffffff;strokeColor=#314354;" parent="1" vertex="1">
                     <mxGeometry x="540" y="160" width="160" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="&lt;b&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;IAwake&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;awake()&lt;/div&gt;&lt;div style=&quot;font-style: italic; text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-style: italic; text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
                     <mxGeometry x="540" y="480" width="160" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="&lt;b&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;IUpdate&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;update(deltaTime)&lt;/div&gt;&lt;div style=&quot;font-style: italic; text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-style: italic; text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-                    <mxGeometry x="1010" y="480" width="160" height="160" as="geometry"/>
+                    <mxGeometry x="1160" y="480" width="160" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="11" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;endArrow=block;endFill=0;" parent="1" source="10" target="5" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -34,8 +34,8 @@
                 <mxCell id="12" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;endArrow=block;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="10" target="4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="&lt;b&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;IComponent&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;entity&lt;/div&gt;&lt;div style=&quot;font-style: italic; text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-                    <mxGeometry x="1010" y="160" width="160" height="160" as="geometry"/>
+                <mxCell id="10" value="&lt;b&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;br&gt;IComponent&lt;/b&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;entity&lt;/div&gt;&lt;div style=&quot;font-style: italic; text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#B190CF;fontColor=#ffffff;strokeColor=#432D57;" parent="1" vertex="1">
+                    <mxGeometry x="1160" y="160" width="160" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="20" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" parent="1" source="14" target="19" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -43,14 +43,17 @@
                 <mxCell id="14" value="&lt;b style=&quot;&quot;&gt;AppComponent&lt;br&gt;&lt;/b&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;+currentScenario$&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;+events$&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;+mapObjects$&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
                     <mxGeometry x="-80" y="-80" width="160" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="16" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=block;endFill=0;" parent="1" source="15" target="2" edge="1">
+                <mxCell id="16" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=block;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="15" target="2" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="23" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=diamond;startFill=1;" parent="1" source="15" target="21" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="&lt;b&gt;MapContainer &lt;br&gt;(mapDetails, mapObjects)&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-                    <mxGeometry x="280" y="-400" width="160" height="160" as="geometry"/>
+                <mxCell id="40" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;startArrow=diamondThin;startFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="15" target="38" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="&lt;b&gt;MapContainer &lt;br&gt;(mapDetails, mapObjects)&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="-310" width="160" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="18" value="&lt;b&gt;Clock&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;Tick$&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
                     <mxGeometry x="-400" y="-200" width="160" height="160" as="geometry"/>
@@ -64,8 +67,8 @@
                 <mxCell id="26" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=open;startFill=0;endArrow=open;endFill=0;" parent="1" source="21" target="25" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" value="&lt;b&gt;MapBackground (imageFile, imagePos)&lt;/b&gt;&lt;br&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-                    <mxGeometry x="540" y="-280" width="160" height="160" as="geometry"/>
+                <mxCell id="21" value="&lt;b&gt;MapBackground (mapData, mapContainer)&lt;br&gt;&lt;/b&gt;&lt;br&gt;+getBackgroundPosition()&lt;br&gt;+setBackgroundPosition()" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="-540" width="160" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="24" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=diamond;startFill=1;" parent="1" source="14" target="15" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -79,8 +82,11 @@
                         <mxPoint x="550" y="180" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="28" value="&lt;b&gt;MapObject (objectPos)&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-                    <mxGeometry x="540" y="-640" width="160" height="160" as="geometry"/>
+                <mxCell id="42" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=open;startFill=0;endArrow=open;endFill=0;" parent="1" source="28" target="41" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="&lt;b&gt;MapObject (objectPos, mapBackground)&lt;/b&gt;&lt;br&gt;&lt;br&gt;+getPosition()" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="-760" width="160" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="29" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=diamond;startFill=1;" parent="1" source="15" target="28" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -88,8 +94,8 @@
                         <mxPoint x="459.9999999999998" y="-370" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="30" value="&lt;b&gt;DrawMapObject&lt;br&gt;&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-                    <mxGeometry x="1060" y="-640" width="180" height="180" as="geometry"/>
+                <mxCell id="30" value="&lt;b&gt;DrawMapObject&lt;br&gt;&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="-750" width="180" height="180" as="geometry"/>
                 </mxCell>
                 <mxCell id="31" style="edgeStyle=none;html=1;startArrow=open;startFill=0;endArrow=open;endFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="28" target="30" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -102,26 +108,34 @@
                         <mxPoint x="1000" y="-220" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="36" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=block;endFill=0;" parent="1" source="32" target="35" edge="1">
+                <mxCell id="36" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=block;endFill=0;" parent="1" source="32" target="35" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="32" value="&lt;b&gt;BackgroundOnClickComponent&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-                    <mxGeometry x="1290" y="-430" width="180" height="180" as="geometry"/>
+                <mxCell id="32" value="&lt;b&gt;BackgroundOnClickComponent&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#76608a;fontColor=#ffffff;strokeColor=#432D57;" parent="1" vertex="1">
+                    <mxGeometry x="950" y="-530" width="180" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="25" value="&lt;b&gt;DrawBackgroundComponent&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-                    <mxGeometry x="910" y="-210" width="180" height="180" as="geometry"/>
+                <mxCell id="25" value="&lt;b&gt;DrawBackgroundComponent&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#76608a;fontColor=#ffffff;strokeColor=#432D57;" parent="1" vertex="1">
+                    <mxGeometry x="950" y="-330" width="180" height="180" as="geometry"/>
                 </mxCell>
                 <mxCell id="37" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=block;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="35" target="10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="35" value="&lt;i style=&quot;&quot;&gt;&lt;b&gt;OnClickComponent&lt;/b&gt;&lt;/i&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
-                    <mxGeometry x="1290" y="-210" width="180" height="180" as="geometry"/>
+                <mxCell id="35" value="&lt;i style=&quot;&quot;&gt;&lt;b&gt;OnClickComponent&lt;br&gt;&lt;br&gt;+click&lt;br&gt;+mouseDown&lt;br&gt;+mouseLeave&lt;br&gt;+mouseMove&lt;br&gt;+mouseUp&lt;br&gt;&lt;/b&gt;&lt;/i&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#B190CF;fontColor=#ffffff;strokeColor=default;fillStyle=auto;" parent="1" vertex="1">
+                    <mxGeometry x="1410" y="-530" width="180" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" value="&lt;b style=&quot;&quot;&gt;MouseListener&lt;br&gt;(attach listener)&lt;br&gt;&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="1560" y="-210" width="180" height="180" as="geometry"/>
+                <mxCell id="39" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=block;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="38" target="10" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1090" y="160" as="targetPoint"/>
+                    </mxGeometry>
                 </mxCell>
-                <mxCell id="39" value="&lt;b style=&quot;&quot;&gt;MouseSubscriber&lt;br&gt;(subscribe to listener)&lt;br&gt;&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="1560" y="-430" width="180" height="180" as="geometry"/>
+                <mxCell id="38" value="&lt;b style=&quot;&quot;&gt;MouseListener&lt;br&gt;&lt;br&gt;+onMouseMove&lt;br&gt;+onMouseDown&lt;br&gt;+onMouseUp&lt;br&gt;&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#76608a;fontColor=#ffffff;strokeColor=#432D57;" parent="1" vertex="1">
+                    <mxGeometry x="640" y="-120" width="180" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=open;endFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="41" target="35" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="&lt;b&gt;MapObjectOnClickComponent&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#76608a;fontColor=#ffffff;strokeColor=#432D57;" parent="1" vertex="1">
+                    <mxGeometry x="1120" y="-950" width="180" height="180" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
