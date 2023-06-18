@@ -1,5 +1,6 @@
 import { IComponent } from '@ecs/models/component';
 import { MapBackground } from '@map/entities/map-background';
+import { Vector2d } from '@map/models/vector-2d';
 import { Graphics } from '@map/services/graphics';
 
 export class DrawBackgroundComponent implements IComponent {
@@ -12,6 +13,9 @@ export class DrawBackgroundComponent implements IComponent {
   public awake(): void {
     this._image.src = this._backgroundImage
     this._image.addEventListener('load', () => {
+      const width = this._image.naturalWidth;
+      const height = this._image.naturalHeight;
+      this.entity.setBackgroundSize(new Vector2d(width, height));
       this._clear();
     });
   }

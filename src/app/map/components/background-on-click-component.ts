@@ -21,23 +21,17 @@ export class BackgroundOnClickComponent extends OnClickComponent {
 
   update(deltaTime: number): void {}
   
-  public click(globalPoint: Vector2d, localPoint: Vector2d): void {
+  public click(globalPoint: Vector2d, localPoint: Vector2d): void {}
+
+  public mouseDown(globalPoint: Vector2d, localPoint: Vector2d): void {
     if (this._clickedOnBackground(localPoint)) {
-
-      console.log('map clicked at ');
-    } else {
-      console.log('clicked outside map');
-      
-    }
-
-  }
-
-  public mouseDown(point: Vector2d): void {
-    if (this._clickedOnBackground(point)) {
       const startPos =  this.entity.getBackgroundPosition();
-      this._offsetX =  point.x - startPos.x;
-      this._offsetY =  point.y - startPos.y;
-      this._dragging = true  
+      this._offsetX =  localPoint.x - startPos.x;
+      this._offsetY =  localPoint.y - startPos.y;
+      this._dragging = true
+      console.log('offestX ', this._offsetX);
+      console.log('offestY ', this._offsetY);
+      
     }
   }
 
@@ -45,9 +39,9 @@ export class BackgroundOnClickComponent extends OnClickComponent {
     this._dragging = false;
   }
 
-  public mouseMove(position: Vector2d): void {
+  public mouseMove(globalPoint: Vector2d, localPoint: Vector2d): void {
     if (this._dragging) {    
-      this.entity.setBackgroundPosition(new Vector2d( position.x - this._offsetX, position.y - this._offsetY));
+      this.entity.setBackgroundPosition(new Vector2d( localPoint.x - this._offsetX, localPoint.y - this._offsetY));
     }
   }
 
@@ -55,28 +49,18 @@ export class BackgroundOnClickComponent extends OnClickComponent {
     this._dragging = false;
   }
 
-  /* private _calcLocalPointFrom(globalPoint: Vector2d): Vector2d | null {
-    const elementRect = this.entity.canvasElement.canvas.nativeElement.getBoundingClientRect();
-    const x = globalPoint.x - elementRect.left;
-    const y = globalPoint.y - elementRect.top - 2;
+  private _clickedOnBackground(localPoint: Vector2d): boolean {
+    const size = this.entity.getBackgroundSize();
+    const position = this.entity.getBackgroundPosition();
 
-    if(x < 0 || y < 0){
-      return null
+    if (localPoint.x < position.x || localPoint.y < position.y) {
+      return false;
     }
 
-    return new Vector2d(x, y)
-  } */
-
-  private _clickedOnBackground(localPoint: Vector2d): boolean {
-    const mapPointX = localPoint.x - this.entity.getBackgroundPosition().x;
-    const mapPointY = localPoint.y - this.entity.getBackgroundPosition().y;
-
-    if (
-      (mapPointX < 0 || mapPointX > this.entity.getBackgroundSize().x)
-      || ( mapPointY < 0 || mapPointY > this.entity.getBackgroundSize().y)
-     ) { 
+    if( localPoint.x > (size.x + position.x) || localPoint.y > (size.y + position.y) ){
       return false
-    } 
+    }
+
     return true; 
   }
 }

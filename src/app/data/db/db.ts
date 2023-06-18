@@ -18,6 +18,11 @@ export const mockScenarioList: IScenarioListItem[] = [
     id: 3,
     name: "Misiones Jesuitas",
     description: "Las misiones jesuitas fueron una empresa misionera en América Latina durante los siglos XVI y XVII. Su objetivo era evangelizar y enseñar habilidades prácticas a las poblaciones indígenas. Aunque estuvieron vinculadas a aspectos negativos, también jugaron un papel importante en la protección de los indígenas de la explotación colonial y en la preservación de su cultura. En resumen, las misiones jesuitas dejaron un legado duradero en la historia y la cultura de América Latina."
+  },
+  {
+    id: 4,
+    name: "The Balkans",
+    description: "1 - The death of Yugoslavia"
   }
 ]
 
@@ -29,7 +34,7 @@ export const mockScenarios: IScenario[] = [
     startDate: 700,
     mapData: {
       backgroundImage: 'assets/images/back-as-700.jpg',
-      startingPosition: { x: 0, y: 0 }
+      startingPosition: { x: 0, y: -100 }
     },
     events: [
       {
@@ -79,6 +84,18 @@ export const mockScenarios: IScenario[] = [
     mapData: {
       backgroundImage: 'assets/images/misiones.png',
       startingPosition: { x: 0, y: 0 }
+    },
+    events: [],
+    source: ''
+  },
+  {
+    id: 4,
+    name: "The Balkans",
+    description: "1 - The death of Yugoslavia",
+    startDate: 1980,
+    mapData: {
+      backgroundImage: 'assets/images/kosovo.gif',
+      startingPosition: { x: 50, y: 50 }
     },
     events: [],
     source: ''

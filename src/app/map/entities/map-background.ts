@@ -10,6 +10,7 @@ export class MapBackground extends Entity{
 
   // background position relative to the canvas
   private _backgroundPosition = new Vector2d(0,0);
+  private _backgroundSize = new Vector2d(0,0);
 
   constructor(private _mapData: IMapData, private _map: MapContainer) {
     super();
@@ -34,8 +35,13 @@ export class MapBackground extends Entity{
   }
 
   public getBackgroundSize(): Vector2d {
-    // todo: implement this
-    return new Vector2d(500, 500)
+    return this._backgroundSize;
+  }
+
+  public setBackgroundSize(size: Vector2d) {
+    console.log('set size ', size);
+    
+    this._backgroundSize = size;
   }
 
 }
