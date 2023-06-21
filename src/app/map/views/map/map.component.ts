@@ -130,9 +130,10 @@ export class MapContainer extends Entity implements AfterViewInit, OnChanges {
     this._mouseListener.onMouseUp(e);
   }
 
-  /* public getOffset(): Vector2d {
-    return new Vector2d(0,0);
-  } */
+  public getOffset(): Vector2d {
+    const pos = this._background?.getBackgroundPosition();
+    return pos ? new Vector2d(pos.x, pos.y) : new Vector2d(0, 0);
+  }
 
   getElement(): ElementRef<any> {
     return this.canvasElement.canvas;

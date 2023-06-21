@@ -18,8 +18,9 @@ export class MapObject extends Entity {
   }
 
   public getPosition(): Vector2d {
-    const mapX = this._position.x; // + this._container.getOffset().x;
-    const mapY = this._position.y; // + this._container.getOffset().y;
+    const backgroundPos = this._container.getOffset();
+    const mapX = this._position.x + backgroundPos.x;
+    const mapY = this._position.y + backgroundPos.y;
     return new Vector2d(mapX, mapY);
   }
 }
