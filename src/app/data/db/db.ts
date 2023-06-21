@@ -62,6 +62,7 @@ export const mockScenarios: IScenario[] = [
         ]
       }
     ],
+    layers: [],
     source: 'Beade'
   },
   {
@@ -74,6 +75,7 @@ export const mockScenarios: IScenario[] = [
       startingPosition: { x: 100, y: 0 }
     },
     events: [],
+    layers: [],
     source: 'Grégoire de Tours'
   },
   {
@@ -86,6 +88,7 @@ export const mockScenarios: IScenario[] = [
       startingPosition: { x: 0, y: 0 }
     },
     events: [],
+    layers: [],
     source: ''
   },
   {
@@ -94,10 +97,49 @@ export const mockScenarios: IScenario[] = [
     description: "1 - The death of Yugoslavia",
     startDate: 1980,
     mapData: {
-      backgroundImage: 'assets/images/kosovo.gif',
-      startingPosition: { x: 50, y: 50 }
+      backgroundImage: 'assets/images/kosovo.jpg',
+      startingPosition: { x: 0, y: 0 }
     },
-    events: [],
+    events: [
+      {
+        id: 1,
+        name: 'Kosovo',
+        startDate: -1,
+        endDate: 71000,
+        mapObjects: [
+          {
+            name: 'Pristina',
+            position: new Vector2d(584, 463)
+          }
+        ]
+      },
+    ],
+    layers: [
+      {
+        id: 1,
+        name: 'Neolithic Period sites'
+      },
+      {
+        id: 2,
+        name: 'Copper Age sites'
+      },
+      {
+        id: 3,
+        name: 'Bronze Age sites'
+      },
+      {
+        id: 4,
+        name: 'Iron Age sites'
+      },
+      {
+        id: 5,
+        name: 'Roman Period sites'
+      },
+      {
+        id: 6,
+        name: 'Medieval sites'
+      }
+    ],
     source: ''
   }
 ]

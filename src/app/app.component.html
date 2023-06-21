@@ -14,6 +14,13 @@
     <div class="clock">Year: {{ tick$ | async }}</div>
   </div>
 
+  <div class="layer-selector" *ngIf="layers$ | async as layers">
+    <ui-selector-layers
+      [layers]="layers"
+      (selectedLayerId)="this.actionSelectedLayer$.next($event)"
+    ></ui-selector-layers>
+  </div>
+
   <div class="event-selector" *ngIf="events$ | async as events">
     <ui-selector-events [events]="events"></ui-selector-events>
   </div>

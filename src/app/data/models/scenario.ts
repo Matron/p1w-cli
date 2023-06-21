@@ -1,12 +1,14 @@
 import { IMapData } from "@map/models/map-data";
 import { IEvent } from "./event";
+import { IMapLayer } from "./map-layer";
 
 export interface IScenario {
   id: number,
-  name: string,
   description: string,
-  startDate: number,
-  mapData: IMapData,
   events: IEvent[],
+  layers: IMapLayer[],
+  mapData: IMapData,
+  name: string,
   source: string
+  startDate: number,
 }

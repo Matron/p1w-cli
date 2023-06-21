@@ -3,7 +3,7 @@ import { BehaviorSubject, distinctUntilChanged, of, switchMap, tap } from 'rxjs'
 import { DataService } from '@data/services/data.service';
 import { IEvent, IMapObject } from '@data/models/event';
 import { ClockService } from './clock/clock.service';
-import { MapObject } from '@map/entities/map-object';
+import { IMapLayer } from '@data/models/map-layer';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +14,14 @@ export class AppComponent {
 
   private _events: IEvent[] | undefined = [];
   
+  public scenarioList$ = this._dataService.scenarios$;
+  
   public events$ = new BehaviorSubject<IEvent[]>([]);
+  public layers$ = new BehaviorSubject<IMapLayer[] | undefined>([]);
   public mapObjects$ = new BehaviorSubject<IMapObject[]>([]);
+
+  public actionSelectScenario$ = new BehaviorSubject<number | null>(null);
+  public actionSelectedLayer$ = new BehaviorSubject<number | null>(null);
 
   public tick$ = this._clock.tick$.pipe(
     tap(time => {
@@ -23,9 +29,6 @@ export class AppComponent {
     })
   );
 
-  public scenarioList$ = this._dataService.scenarios$;
-  
-  public actionSelectScenario$ = new BehaviorSubject<number | null>(null);
   public currentScenario$ = this.actionSelectScenario$.pipe(
     distinctUntilChanged(),
     switchMap(id => {
@@ -35,6 +38,7 @@ export class AppComponent {
             console.log('switchMap - currentScenrio$ - we have new scenario data: ', data);
             this._clock.start(data?.startDate);
             this._events = data?.events;
+            this.layers$.next(data?.layers!)
           })
         )
       } else {
@@ -42,6 +46,12 @@ export class AppComponent {
       }
     })
   );
+
+  public activeLayers$ = this.actionSelectedLayer$.pipe(
+    tap(
+      data => console.log('toggle layer ', data)
+    )
+  ).subscribe(); // TODO: unsubscribe?
 
   constructor(
     private _dataService: DataService,
