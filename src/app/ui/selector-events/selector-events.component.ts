@@ -9,7 +9,7 @@ import { IEvent } from '@data/models/event';
 export class SelectorEventsComponent {
 
   @Input()
-  events: IEvent[];
+  events: IEvent[] | null;
 }
 
 

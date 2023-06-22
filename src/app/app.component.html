@@ -1,37 +1,43 @@
-<div class="scenario-selector">
-  <ui-selector-scenario
-    [scenarios]="scenarioList$ | async"
-    (selectedScenarioId)="this.actionSelectScenario$.next($event)"
-  ></ui-selector-scenario>
-</div>
 
-<ng-container *ngIf="currentScenario$ | async as currentScenario">
-  <div class="toolbar">
-    <div class="scenario-details">
-      <ui-details-scenario [scenario]="currentScenario"></ui-details-scenario>
+<div class="main">
+  
+  <div class="scenario-info">  
+
+    <div class="toolbar-item">
+      <ui-selector-scenario
+        [scenarios]="scenarioList$ | async"
+        (selectedScenarioId)="this.actionSelectScenario$.next($event)"
+      ></ui-selector-scenario>
     </div>
+    
+    <ng-container *ngIf="currentScenario">
+      <div class="toolbar-item">
+        <ui-details-scenario [scenario]="currentScenario"></ui-details-scenario>
+      </div>
 
-    <div class="clock">Year: {{ tick$ | async }}</div>
+      <div class="toolbar-item" *ngIf="layers$ | async as layers">
+        <ui-selector-layers
+        [layers]="layers"
+        (selectedLayerId)="this.actionSelectedLayer$.next($event)"
+        ></ui-selector-layers>
+      </div>
+
+      <div class="toolbar-item" >
+        <ui-selector-events [events]="events$ | async"></ui-selector-events>
+      </div>
+
+      <div class="toolbar-item">Year: {{ currentTime$ | async }}</div>
+    </ng-container>
+
   </div>
-
-  <div class="layer-selector" *ngIf="layers$ | async as layers">
-    <ui-selector-layers
-      [layers]="layers"
-      (selectedLayerId)="this.actionSelectedLayer$.next($event)"
-    ></ui-selector-layers>
-  </div>
-
-  <div class="event-selector" *ngIf="events$ | async as events">
-    <ui-selector-events [events]="events"></ui-selector-events>
-  </div>
-
-  <div class="map-container">
+  
+  <div class="map" *ngIf="currentScenario">
     <map-container
       [mapDetails]="currentScenario.mapData"
       [mapObjects]="mapObjects$ | async"
     ></map-container>
   </div>
-</ng-container>
+</div>
 
 <!-- TODO -->
 <!-- < overlay container to show modals - general form with content projection > -->

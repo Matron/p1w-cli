@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { BehaviorSubject, distinctUntilChanged, of, switchMap, tap } from 'rxjs';
 import { DataService } from '@data/services/data.service';
 import { IEvent, IMapObject } from '@data/models/event';
 import { ClockService } from './clock/clock.service';
 import { IMapLayer } from '@data/models/map-layer';
+import { IScenario } from '@data/models/scenario';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent {
 
   private _events: IEvent[] | undefined = [];
   
+  public currentScenario: IScenario | undefined;
   public scenarioList$ = this._dataService.scenarios$;
   
   public events$ = new BehaviorSubject<IEvent[]>([]);
@@ -23,7 +25,7 @@ export class AppComponent {
   public actionSelectScenario$ = new BehaviorSubject<number | null>(null);
   public actionSelectedLayer$ = new BehaviorSubject<number | null>(null);
 
-  public tick$ = this._clock.tick$.pipe(
+  public currentTime$ = this._clock.tick$.pipe(
     tap(time => {
       this._checkForEvent(time)
     })
@@ -39,13 +41,14 @@ export class AppComponent {
             this._clock.start(data?.startDate);
             this._events = data?.events;
             this.layers$.next(data?.layers!)
+            this.currentScenario = data;
           })
         )
       } else {
         return of(undefined)
       }
     })
-  );
+  ).subscribe();
 
   public activeLayers$ = this.actionSelectedLayer$.pipe(
     tap(
@@ -55,7 +58,8 @@ export class AppComponent {
 
   constructor(
     private _dataService: DataService,
-    private _clock: ClockService
+    private _clock: ClockService,
+    private _cdr: ChangeDetectorRef
   ) {}
 
   private _checkForEvent(time: number): void {
@@ -72,5 +76,6 @@ export class AppComponent {
     }
     this.events$.next(eventos);
     this.mapObjects$.next(mapObjects);
+    this._cdr.detectChanges();
   }
 }

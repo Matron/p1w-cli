@@ -1,54 +1,27 @@
-:host {
-  display: block;
+.main {
+  height: 100%;
   background-color: rgb(32, 32, 32);
   color: lightgreen;
-  position: relative;
-  height: 100vh;
-}
+  overflow: auto;
 
-.scenario-selector {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  width: 200px;
-}
-
-.event-selector {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 200px;
-}
-
-.layer-selector {
-  position: absolute;
-  top: 16px;
-  right: 116px;
-  width: 200px;
-}
-
-.toolbar {
-  position: absolute;
-  top: 16px;
-  width: 50%;
-  left: 0;
-  right: 0;
-  margin: auto;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  .scenario-details {
-    width: 200px;
+  .scenario-info {
+    height: 150px;
+    margin: 10px;
+    border: 1px solid lightgreen;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto;
   }
 
-  .clock {
-    width: 200px;
+  .map {
+    height: calc(100% - 180px);
+    margin: 10px;
+    border: 1px solid lightgreen;
   }
-}
 
-.map-container {
-  position: absolute;
-  bottom: 0;
+  .toolbar-item {
+    width: 220px;
+    min-width: 150px;
+  }
 }
