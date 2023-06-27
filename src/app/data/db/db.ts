@@ -1,6 +1,6 @@
 import { Vector2d } from "@map/models/vector-2d";
 import { Observable, of } from "rxjs";
-import { IScenario } from "../models/scenario";
+import { IScenarioData } from "../models/scenario";
 import { IScenarioListItem } from "../models/scenario-list-item";
 
 export const mockScenarioList: IScenarioListItem[] = [
@@ -26,7 +26,7 @@ export const mockScenarioList: IScenarioListItem[] = [
   }
 ]
 
-export const mockScenarios: IScenario[] = [
+export const mockScenarios: IScenarioData[] = [
   {
     id: 1,
     name: "Anglo Saxons",
@@ -40,9 +40,10 @@ export const mockScenarios: IScenario[] = [
       {
         id: 1,
         name: 'H&H',
-        startDate: -1,
-        endDate: 71000,
-        mapObjects: [
+        startDate: 10,
+        endDate: 710,
+        layerId: 1,
+        mapObjectsData: [
           {
             name: 'H&H arrive',
             position: new Vector2d(100, 100)
@@ -52,9 +53,10 @@ export const mockScenarios: IScenario[] = [
       {
         id: 2,
         name: 'Artur',
-        startDate: -1,
-        endDate: 71000,
-        mapObjects: [
+        startDate: 705,
+        endDate: 730,
+        layerId: 1,
+        mapObjectsData: [
           {
             name: 'Artur start',
             position: new Vector2d(200, 200)
@@ -62,7 +64,14 @@ export const mockScenarios: IScenario[] = [
         ]
       }
     ],
-    layers: [],
+    layers: [
+      {
+        id: 1,
+        name: 'Legendary Events',
+        isActive: true,
+        mapObjectsData: []
+      },
+    ],
     source: 'Beade'
   },
   {
@@ -106,10 +115,37 @@ export const mockScenarios: IScenario[] = [
         name: 'Kosovo',
         startDate: -1,
         endDate: 71000,
-        mapObjects: [
+        layerId: 3,
+        mapObjectsData: [
           {
             name: 'Pristina',
-            position: new Vector2d(584, 463)
+            position: new Vector2d(584, 463),
+          }
+        ]
+      },
+      {
+        id: 2,
+        name: 'Vlashnjë',
+        startDate: -1,
+        endDate: 71000,
+        layerId: 1,
+        mapObjectsData: [
+          {
+            name: 'Vlashnjë',
+            position: new Vector2d(401, 382),
+          }
+        ]
+      },
+      {
+        id: 3,
+        name: 'Runik',
+        startDate: -1,
+        endDate: 71000,
+        layerId: 1,
+        mapObjectsData: [
+        {
+          name: 'Runik',
+          position: new Vector2d(378, 716),
           }
         ]
       },
@@ -117,34 +153,46 @@ export const mockScenarios: IScenario[] = [
     layers: [
       {
         id: 1,
-        name: 'Neolithic Period sites'
+        name: 'Neolithic Period sites',
+        isActive: true,
+        mapObjectsData: []
       },
       {
         id: 2,
-        name: 'Copper Age sites'
+        name: 'Copper Age sites',
+        isActive: true,
+        mapObjectsData: []
       },
       {
         id: 3,
-        name: 'Bronze Age sites'
+        name: 'Bronze Age sites',
+        isActive: false,
+        mapObjectsData: []
       },
       {
         id: 4,
-        name: 'Iron Age sites'
+        name: 'Iron Age sites',
+        isActive: false,
+        mapObjectsData: []
       },
       {
         id: 5,
-        name: 'Roman Period sites'
+        name: 'Roman Period sites',
+        isActive: true,
+        mapObjectsData: []
       },
       {
         id: 6,
-        name: 'Medieval sites'
+        name: 'Medieval sites',
+        isActive: false,
+        mapObjectsData: []
       }
     ],
     source: ''
   }
 ]
 
-export const getScenario = (scenarioId: number): Observable<IScenario | undefined> => {
+export const getScenario = (scenarioId: number): Observable<IScenarioData | undefined> => {
   const scenario = mockScenarios.find(scn => scn.id === scenarioId);
   return of(scenario);
 }

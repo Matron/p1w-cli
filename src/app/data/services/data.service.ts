@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DataModule } from '../data.module';
 import { mockScenarioList, getScenario } from '../db/db';
-import { IScenario } from '../models/scenario';
+import { IScenarioData } from '../models/scenario';
 import { IScenarioListItem } from '../models/scenario-list-item';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class DataService {
 
   public scenarios$ = new BehaviorSubject<IScenarioListItem[]>(mockScenarioList);
 
-  public loadScenario(scenarioId: number): Observable<IScenario | undefined> {
+  public loadScenario(scenarioId: number): Observable<IScenarioData | undefined> {
     return getScenario(scenarioId)
   }
 }

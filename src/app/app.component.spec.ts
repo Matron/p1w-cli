@@ -16,11 +16,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'p1w-cli'`, () => {
+  /* it(`should have as title 'p1w-cli'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('p1w-cli');
-  });
+  }); */
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);

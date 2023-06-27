@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IEvent } from '@data/models/event';
+import { IEventData } from '@data/models/event';
 
 @Component({
   selector: 'ui-selector-events',
@@ -9,7 +9,7 @@ import { IEvent } from '@data/models/event';
 export class SelectorEventsComponent {
 
   @Input()
-  events: IEvent[] | null;
+  events: IEventData[] | null;
 }
 
 

@@ -34,7 +34,7 @@
   <div class="map" *ngIf="currentScenario">
     <map-container
       [mapDetails]="currentScenario.mapData"
-      [mapObjects]="mapObjects$ | async"
+      [mapLayersData]="layers$ | async"
     ></map-container>
   </div>
 </div>

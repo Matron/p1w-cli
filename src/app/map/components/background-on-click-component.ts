@@ -15,9 +15,7 @@ export class BackgroundOnClickComponent extends OnClickComponent {
     mouseListener.subscribe(this);
   }
 
-  awake(): void {
-    console.log('awake BackgroundOnClickComponent');
-  }
+  awake(): void {}
 
   update(deltaTime: number): void {}
   

@@ -39,8 +39,6 @@ export class MapBackground extends Entity{
   }
 
   public setBackgroundSize(size: Vector2d) {
-    console.log('set size ', size);
-    
     this._backgroundSize = size;
   }
 

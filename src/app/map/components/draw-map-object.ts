@@ -7,17 +7,15 @@ export class DrawMapObjectComponent implements IComponent {
   entity: MapObject | null;
 
   awake(): void {
-    this._clear();
+    //this._clear();
   }
   
   update(deltaTime: number): void {
-    this._clear();
-    this._draw();
+    //this._clear();
+    if (this.entity?.isActive()) this._draw();
   }
 
-  private _clear(): void {
-
-  }
+  // private _clear(): void {}
 
   private _draw(): void {
     Graphics.drawCircle(this.entity?.getPosition()!, 10, 'darkgreen');

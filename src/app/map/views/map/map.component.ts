@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, ElementRef, Input, NgZone, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import { IMapObject } from '@data/models/event';
 import { Entity } from '@ecs/models/entity';
 import { MouseListenerComponent } from '@map/components/mouse-listener-component';
 import { MapBackground } from '@map/entities/map-background';
-import { MapObject } from '@map/entities/map-object';
 import { IMapData } from '@map/models/map-data';
 import { CanvasComponent } from '../canvas/canvas.component';
 import { Vector2d } from '@map/models/vector-2d';
+import { MapLayer } from '@map/entities/map-layer';
+import { IMapLayerData } from '@data/models/map-layer';
 
 @Component({
   selector: 'map-container',
@@ -19,14 +19,13 @@ export class MapContainer extends Entity implements AfterViewInit, OnChanges {
   canvasElement: CanvasComponent;
 
   @Input()
-  mapDetails: IMapData | undefined;
+  mapDetails: IMapData | null;
 
   @Input()
-  mapObjects: IMapObject[] | null;
+  mapLayersData: IMapLayerData[] | null;
 
   private _background: MapBackground | null = null;
-  //private _layers: MapLayer[] = [];
-  private _mapObjects: MapObject[] = [];
+  private _mapLayers: MapLayer[] = [];
 
   private _mouseListener: MouseListenerComponent;
   
@@ -42,27 +41,19 @@ export class MapContainer extends Entity implements AfterViewInit, OnChanges {
   
   ngOnChanges(changes: SimpleChanges): void {
     let newMap = changes['mapDetails'];
-    let newObjects = changes['mapObjects'];
+    let newLayers = changes['mapLayersData']
 
     if (newMap && !newMap.firstChange) {
       this._clearMap();
       this.awake();
     }
 
-    if(newObjects && !newObjects.firstChange) {
-      this._mapObjects = [];
-      for (const obj of this.mapObjects!) {
-        const mo = new MapObject(obj.position, this)
-        this._mapObjects.push(mo);
-        mo.awake();
-      }
-
+    if (newLayers) {
+      this._loadLayers();
     }
   }
   
   public override awake(): void {
-      console.log('awake MapContainer with ', this.mapDetails);
-      
       this._mouseListener = new MouseListenerComponent();
       this.addComponent(this._mouseListener);
 
@@ -73,18 +64,7 @@ export class MapContainer extends Entity implements AfterViewInit, OnChanges {
       }
       this._background?.awake();
 
-      /* this._layers.push(new MapLayer());
-      for (const layer of this._layers) {
-        layer.awake();
-      } */
-
-      for (const obj of this.mapObjects!) {
-        this._mapObjects.push(new MapObject(obj.position, this));
-      }
-
       window.requestAnimationFrame(() => {
-        console.log('map - start animation loop');
-        
         this._lastTimeStamp = Date.now();
         this.update();
       });
@@ -97,36 +77,35 @@ export class MapContainer extends Entity implements AfterViewInit, OnChanges {
 
       this._background?.update(deltaTime);
 
-      /* for (const layer of this._layers) {
-        layer.update(deltaTime);
-      } */
-
-      
-      for (const obj of this._mapObjects) {
-        obj.update(deltaTime);
+      if (this._mapLayers) {
+        for (const layer of this._mapLayers) {
+          if (layer.isActive) {
+            layer.update(deltaTime);
+          }
+        }
       }
       
       this._lastTimeStamp = Date.now();
       this._ngZone.runOutsideAngular(() => window.requestAnimationFrame(() => this.update()) );
   }
 
-  onClick(e: MouseEvent): void {
+  public onClick(e: MouseEvent): void {
     this._mouseListener.onClick(e);
   }
   
-  onMouseDown(e: MouseEvent): void {
+  public onMouseDown(e: MouseEvent): void {
     this._mouseListener.onMouseDown(e);
   }
   
-  onMouseLeave(e: MouseEvent): void {
+  public onMouseLeave(e: MouseEvent): void {
     this._mouseListener.onMouseLeave(e);
   }
 
-  onMouseMove(e: MouseEvent): void {
+  public onMouseMove(e: MouseEvent): void {
     this._mouseListener.onMouseMove(e);
   }
   
-  onMouseUp(e: MouseEvent): void {
+  public onMouseUp(e: MouseEvent): void {
     this._mouseListener.onMouseUp(e);
   }
 
@@ -135,15 +114,26 @@ export class MapContainer extends Entity implements AfterViewInit, OnChanges {
     return pos ? new Vector2d(pos.x, pos.y) : new Vector2d(0, 0);
   }
 
-  getElement(): ElementRef<any> {
+  public getElement(): ElementRef<any> {
     return this.canvasElement.canvas;
   }
 
   private _clearMap():void {
     this._background = null;
-    //this._layers = [];
-    this._mapObjects = [];
+    this._mapLayers = [];
     this._components = [];
   }
 
+  private _loadLayers(): void {
+    this._mapLayers = [];
+    if (!this.mapLayersData) return;
+    for (const layerData of this.mapLayersData) {
+      const newLayer = new MapLayer(layerData.name, layerData.isActive, this);
+      if (layerData.mapObjectsData) {
+        newLayer.addMapObjects(layerData.mapObjectsData);
+      }
+      this._mapLayers.push(newLayer);
+      newLayer.awake();
+    }
+  }
 }

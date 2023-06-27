@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IMapLayer } from '@data/models/map-layer';
+import { IMapLayerData } from '@data/models/map-layer';
 
 @Component({
   selector: 'ui-selector-layers',
@@ -8,7 +8,7 @@ import { IMapLayer } from '@data/models/map-layer';
 })
 export class SelectorLayersComponent {
   @Input()
-  layers: IMapLayer[];
+  layers: IMapLayerData[] | null;
 
   @Output()
   selectedLayerId = new EventEmitter<number>();

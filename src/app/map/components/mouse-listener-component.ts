@@ -9,9 +9,7 @@ export class MouseListenerComponent implements IComponent {
 
   private _subscribers: OnClickComponent[] = [];
 
-  public awake(): void {
-    console.log('awake MouseListenerComponent');
-  }
+  public awake(): void {}
 
   public update(deltaTime: number): void {}
 
