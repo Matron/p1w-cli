@@ -5,6 +5,7 @@ import { IEventData, IMapObjectData } from '@data/models/event';
 import { ClockService } from './clock/clock.service';
 import { IScenarioData } from '@data/models/scenario';
 import { IMapLayerData } from '@data/models/map-layer';
+import { EventsService } from './events/events.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,6 @@ import { IMapLayerData } from '@data/models/map-layer';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  private _events: IEventData[];
-  private _nextEvent: IEventData | null;
   
   public currentScenario: IScenarioData | undefined;
   
@@ -23,12 +21,16 @@ export class AppComponent {
   public actionSelectScenario$ = new BehaviorSubject<number | null>(null);
   public actionSelectedLayer$ = new BehaviorSubject<number | null>(null);
 
-  public events$ = new BehaviorSubject<IEventData[]>([]);
+  public events$ = this._eventsService.events$.pipe(
+    tap(events => {
+      this._updateLayers(events);
+    })
+  )
   public layers$ = new BehaviorSubject<IMapLayerData[]>([]);
   
   public currentTime$ = this._clock.tick$.pipe(
     tap(time => {
-      this._updateEvents(time)
+      this._eventsService.updateEvents(time);
     })
   );
 
@@ -42,7 +44,7 @@ export class AppComponent {
             if (data) {
               this.currentScenario = data; // TODO: is this ok?
               this.layers$.next([...this.currentScenario.layers]);
-              this._loadEvents(data.events);
+              this._eventsService.loadEvents(data.events, this.currentScenario.startDate);
               this._clock.start(data.startDate);
             }
           })
@@ -68,79 +70,10 @@ export class AppComponent {
   ).subscribe(); // TODO: unsubscribe?
 
   constructor(
-    private _dataService: DataService,
     public _clock: ClockService,
+    private _dataService: DataService,
+    private _eventsService: EventsService,
   ) {}
-
-  private _checkForOldEvents(time: number, events: IEventData[]): boolean {
-    let updated = false;
-    let i = events.length;
-
-    while (i--) {
-      if (events[i].endDate < time) {
-        events.splice(i, 1);        
-        updated = true;
-      }
-    }
-    return updated;
-  }
-
-  private _checkForNewEvents(time: number, currentEvents: IEventData[]): boolean {
-    let updated = false;
-    if (!this._nextEvent) return updated;
-
-    if (this._nextEvent.startDate <= time ) {
-      currentEvents.push(this._nextEvent);
-      this._prepareNextEvent(this._nextEvent);
-      updated = true;
-    }
-    return updated;
-  }
-
-  private _loadEvents(eventsData: IEventData[]): void {
-    // TODO: do we need this? maybe we can get away with just _updateEvents()...
-    const startTime = this.currentScenario?.startDate;
-    if (!startTime) return;
-
-    this._events = eventsData;
-    console.log('here we need to sort the events by start date');
-    
-    const startingEvents: IEventData[] = [];
-    let nextEventIndex = 0;
-
-    for (let i = 0; i < this._events.length; i++) {
-      const evt = this._events[i];
-      
-      if (evt.startDate <= startTime && evt.endDate >= startTime) {
-        startingEvents.push(evt);
-        nextEventIndex = i + 1;
-      }
-    }
-
-    this._nextEvent = this._events[nextEventIndex];
-    this.events$.next(startingEvents);
-    this._updateLayers(startingEvents); 
-  }
-
-  private _prepareNextEvent(currentEvent: IEventData): void {
-    for (let i=0; i < this._events.length; i++) {
-      if(this._events[i].id === currentEvent.id) {
-        this._nextEvent = this._events[i+1];
-      }
-    }
-  }
-
-  private _updateEvents(time: number): void {
-    const currentEvents = this.events$.value
-
-    let removedEvents = this._checkForOldEvents(time, currentEvents);
-    let addedEvents = this._checkForNewEvents(time, currentEvents);
-
-    if (removedEvents || addedEvents) {
-      this.events$.next(currentEvents);
-      this._updateLayers(currentEvents);      
-    }
-  }
 
   private _updateLayers(events: IEventData[]): void {
     if (!this.currentScenario?.layers) return;

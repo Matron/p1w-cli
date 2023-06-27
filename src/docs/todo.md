@@ -12,6 +12,7 @@ remove static variables and use subject.value instead (currentScenario...)
 
 replace arrays with maps in some cases?
 
+move observables declarations logic to contructor on app component
 
 Features:
 popup and modal generic components with content projection
