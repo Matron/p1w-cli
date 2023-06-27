@@ -26,7 +26,16 @@
         <ui-selector-events [events]="events$ | async"></ui-selector-events>
       </div>
 
-      <div class="toolbar-item">Year: {{ currentTime$ | async }}</div>
+      <div class="toolbar-item">
+        <div 
+        class="clickable"
+        style="text-align: center;"
+        [ngClass]=" this._clock.isActive() ? 'active' : 'disabled' "
+        (click)="toggleClock()"
+        >
+          Date: {{ currentTime$ | async }}
+        </div>
+      </div>
     </ng-container>
 
   </div>

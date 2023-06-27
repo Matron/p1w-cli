@@ -17,3 +17,17 @@ body {
   max-height: 130px;
   overflow: auto;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.active {
+  color: lightgreen;
+  background-color: darkslategray;
+}
+
+.disabled {
+  color: yellow;
+  background-color: rgb(178, 142, 0);
+}

@@ -6,6 +6,8 @@ extract to events service? leav app component as an orchetrator only
 
 change this._updateLayers(currentEvents); into a switchmap of events$
 
+create clock ui component
+
 remove static variables and use subject.value instead (currentScenario...)
 
 replace arrays with maps in some cases?

@@ -2,7 +2,7 @@
   <h3>Layers</h3>
   <br />
   <div *ngFor="let layer of layers">
-    <div
+    <div class="clickable"
       [ngClass]="{'active': layer.isActive }"
       (click)="selectedLayerId.emit(layer.id)"
     >

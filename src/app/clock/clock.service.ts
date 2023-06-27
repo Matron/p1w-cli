@@ -15,6 +15,10 @@ export class ClockService {
   
   constructor() {}
 
+  public isActive(): boolean {
+    return this._timer !== null;
+  }
+
   public start(startDate?: number): void {
     if (startDate) {
       this._currentTick = startDate;

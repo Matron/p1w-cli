@@ -69,7 +69,7 @@ export class AppComponent {
 
   constructor(
     private _dataService: DataService,
-    private _clock: ClockService,
+    public _clock: ClockService,
   ) {}
 
   private _checkForOldEvents(time: number, events: IEventData[]): boolean {
@@ -162,5 +162,13 @@ export class AppComponent {
       }
     }
     this.layers$.next(updatedLayers);
+  }
+
+  toggleClock(): void {
+    if (this._clock.isActive()) {
+      this._clock.stop();
+    } else {
+      this._clock.start();
+    }
   }
 }

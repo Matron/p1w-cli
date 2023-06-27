@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="VgLAo6fLAIfAVf-dxMtZ" name="Page-1">
-        <mxGraphModel dx="2858" dy="1900" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1933" dy="1777" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -55,7 +55,7 @@
                 <mxCell id="46" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=default;endArrow=none;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;startArrow=diamond;startFill=1;" parent="1" source="15" target="44" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="&lt;b&gt;MapContainer &lt;br&gt;(mapDetails, mapLayers)&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" parent="1" vertex="1">
+                <mxCell id="15" value="&lt;b&gt;MapContainer &lt;/b&gt;&lt;br&gt;&lt;b&gt;(mapDetails, mapLayers)&lt;/b&gt;&lt;br&gt;&lt;br&gt;-loadLayers()" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" parent="1" vertex="1">
                     <mxGeometry x="158" y="-346" width="160" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="18" value="&lt;b&gt;Clock&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;div style=&quot;text-align: left;&quot;&gt;Tick$&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
@@ -142,10 +142,10 @@
                         <mxPoint x="630.375" y="131.875" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="44" value="&lt;b&gt;MapLayer (objectPos, mapBackground)&lt;/b&gt;&lt;br&gt;&lt;br&gt;-mapObjects[]&lt;br&gt;&lt;br&gt;+addMapObject()&lt;br&gt;+setActive()" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" parent="1" vertex="1">
+                <mxCell id="44" value="&lt;b&gt;MapLayer (objectPos, mapBackground)&lt;/b&gt;&lt;br&gt;&lt;br&gt;-mapObjects[]&lt;br&gt;&lt;br&gt;-addMapObjects()&lt;br&gt;+setActive()" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" parent="1" vertex="1">
                     <mxGeometry x="269" y="-662" width="160" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="49" value="&lt;b&gt;EventService&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+                <mxCell id="49" value="&lt;b&gt;EventService&lt;/b&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
                     <mxGeometry x="-321" y="-368" width="160" height="160" as="geometry"/>
                 </mxCell>
             </root>

@@ -128,12 +128,9 @@ export class MapContainer extends Entity implements AfterViewInit, OnChanges {
     this._mapLayers = [];
     if (!this.mapLayersData) return;
     for (const layerData of this.mapLayersData) {
-      const newLayer = new MapLayer(layerData.name, layerData.isActive, this);
-      if (layerData.mapObjectsData) {
-        newLayer.addMapObjects(layerData.mapObjectsData);
-      }
-      this._mapLayers.push(newLayer);
+      const newLayer = new MapLayer(layerData, this);
       newLayer.awake();
+      this._mapLayers.push(newLayer);
     }
   }
 }

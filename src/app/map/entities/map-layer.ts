@@ -2,18 +2,22 @@ import { Entity } from "@ecs/models/entity";
 import { MapObject } from "./map-object";
 import { IMapObjectData } from "@data/models/event";
 import { MapContainer } from "@map/views/map/map.component";
+import { IMapLayerData } from "@data/models/map-layer";
 
 export class MapLayer extends Entity {
-  public name: string;
-  public isActive: boolean;
-
+  
+  public readonly name: string;
+  public readonly isActive: boolean;
+  
   private _mapObjects: MapObject[] = [];
 
-  constructor(name: string, isActive: boolean, private _map: MapContainer) {
+  constructor(layerData: IMapLayerData, private _map: MapContainer) {
     super();
-    //TODO: refactor below
-    this.name = name;
-    this.isActive = isActive;
+    this.name = layerData.name;
+    this.isActive = layerData.isActive;
+    if (layerData.mapObjectsData) {
+      this._addMapObjects(layerData.mapObjectsData);
+    }
   }
 
   public override awake(): void {
@@ -28,7 +32,7 @@ export class MapLayer extends Entity {
     }
   }
 
-  public addMapObjects(mapObjects: IMapObjectData[]): void {
+  private _addMapObjects(mapObjects: IMapObjectData[]): void {
     for (const obj of mapObjects) {
       this._mapObjects.push(new MapObject(obj.position, this._map));
     }
