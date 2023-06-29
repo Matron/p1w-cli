@@ -7,6 +7,12 @@ import { IScenarioData } from '@data/models/scenario';
 import { IMapLayerData } from '@data/models/map-layer';
 import { EventsService } from './events/events.service';
 
+enum UIPanelEnum {
+  SCENARIO_SELECTOR,
+  SCENARIO_DETAILS,
+  LAYER_SELECTOR,
+  EVENT_SELECTOR,
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,19 +20,26 @@ import { EventsService } from './events/events.service';
 })
 export class AppComponent {
   
+  public readonly UIPanelEnum = UIPanelEnum;
+
+  // TODO: do we need this states below??
   public currentScenario: IScenarioData | undefined;
-  
+  public layers: IMapLayerData[] = [];
+  public events: IEventData[] = [];
+
   public scenarioList$ = this._dataService.scenarios$;
 
   public actionSelectScenario$ = new BehaviorSubject<number | null>(null);
   public actionSelectedLayer$ = new BehaviorSubject<number | null>(null);
+  public uiShowPanel$ = new BehaviorSubject<UIPanelEnum | null>(null);
 
   public events$ = this._eventsService.events$.pipe(
     tap(events => {
+      this.events = events;
       this._updateLayers(events);
     })
-  )
-  public layers$ = new BehaviorSubject<IMapLayerData[]>([]);
+  ).subscribe();
+  //public layers$ = new BehaviorSubject<IMapLayerData[]>([]);
   
   public currentTime$ = this._clock.tick$.pipe(
     tap(time => {
@@ -43,8 +56,10 @@ export class AppComponent {
             console.log('------->>>>> we have new scenario data: ', data);
             if (data) {
               this.currentScenario = data; // TODO: is this ok?
-              this.layers$.next([...this.currentScenario.layers]);
+              //this.layers$.next([...this.currentScenario.layers]);
+              this.layers = [...this.currentScenario.layers];
               this._eventsService.loadEvents(data.events, this.currentScenario.startDate);
+              this.uiShowPanel$.next(null);
               this._clock.start(data.startDate);
             }
           })
@@ -59,12 +74,15 @@ export class AppComponent {
   public activeLayers$ = this.actionSelectedLayer$.pipe(
     tap(
       layerId => {
+        console.log('selected layer ', layerId);
+        
         if (!layerId) return;
-        const updatedLayers = structuredClone(this.layers$.value);
+        const updatedLayers = structuredClone(this.layers);
         const layerIndex = updatedLayers.findIndex(((layer: IMapLayerData) => layer.id == layerId));
     
         updatedLayers[layerIndex].isActive = !updatedLayers[layerIndex].isActive;
-        this.layers$.next(updatedLayers);
+        //this.layers$.next(updatedLayers);
+        this.layers = updatedLayers;
       }
     )
   ).subscribe(); // TODO: unsubscribe?
@@ -75,10 +93,19 @@ export class AppComponent {
     private _eventsService: EventsService,
   ) {}
 
+  public onToolbarButtonClick(toolbarPanel: UIPanelEnum):void {
+    const currentPanel = this.uiShowPanel$.value;
+
+    if (toolbarPanel === currentPanel) {
+      this.uiShowPanel$.next(null);
+    } else {
+      this.uiShowPanel$.next(toolbarPanel);
+    }
+  }
+
   private _updateLayers(events: IEventData[]): void {
     if (!this.currentScenario?.layers) return;
-    
-    const updatedLayers =  structuredClone(this.layers$.value).map((layer: IMapLayerData) => {
+    const updatedLayers =  structuredClone(this.layers).map((layer: IMapLayerData) => {
       return {
         ...layer,
         mapObjectsData: new Array<IMapObjectData>()
@@ -94,7 +121,8 @@ export class AppComponent {
         }
       }
     }
-    this.layers$.next(updatedLayers);
+    //this.layers$.next(updatedLayers);
+    this.layers = updatedLayers;
   }
 
   toggleClock(): void {

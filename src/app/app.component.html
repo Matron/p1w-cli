@@ -1,54 +1,74 @@
 
 <div class="main">
   
-  <div class="scenario-info">  
-
-    <div class="toolbar-item">
-      <ui-selector-scenario
-        [scenarios]="scenarioList$ | async"
-        (selectedScenarioId)="this.actionSelectScenario$.next($event)"
-      ></ui-selector-scenario>
+  <ng-container *ngIf="currentScenario">
+    <div class="clock">
+      <div 
+      class="clickable"
+      style="text-align: center; border-radius: 20px;"
+      [ngClass]=" this._clock.isActive() ? 'active' : 'disabled' "
+      (click)="toggleClock()"
+      >
+        Date: {{ currentTime$ | async }}
+      </div>
     </div>
-    
-    <ng-container *ngIf="currentScenario">
-      <div class="toolbar-item">
-        <ui-details-scenario [scenario]="currentScenario"></ui-details-scenario>
-      </div>
+  </ng-container>
+  
+  <div class="toolbar">
+    <div class="toolbar-button clickable"
+      (click)="onToolbarButtonClick(UIPanelEnum.SCENARIO_SELECTOR)"
+    >
+      <i class="fas fa-list"></i>
+    </div>
 
-      <div class="toolbar-item" *ngIf="layers$ | async as layers">
-        <ui-selector-layers
-        [layers]="layers"
-        (selectedLayerId)="this.actionSelectedLayer$.next($event)"
-        ></ui-selector-layers>
-      </div>
+    <div class="toolbar-button clickable"
+      (click)="onToolbarButtonClick(UIPanelEnum.SCENARIO_DETAILS)"
+    >
+      <i class="fas fa-circle-info"></i>
+    </div>
 
-      <div class="toolbar-item" >
-        <ui-selector-events [events]="events$ | async"></ui-selector-events>
-      </div>
+    <div class="toolbar-button clickable"
+    (click)="onToolbarButtonClick(UIPanelEnum.LAYER_SELECTOR)"
+    >
+      <i class="fas fa-layer-group"></i>
+    </div>
 
-      <div class="toolbar-item">
-        <div 
-        class="clickable"
-        style="text-align: center;"
-        [ngClass]=" this._clock.isActive() ? 'active' : 'disabled' "
-        (click)="toggleClock()"
-        >
-          Date: {{ currentTime$ | async }}
-        </div>
-      </div>
-    </ng-container>
-
+    <div class="toolbar-button clickable"
+    (click)="onToolbarButtonClick(UIPanelEnum.EVENT_SELECTOR)"
+    >
+      <i class="fas fa-calendar"></i>
+    </div>
   </div>
   
+  <div class="toolbar-panel" *ngIf="(uiShowPanel$ | async) === UIPanelEnum.SCENARIO_SELECTOR">
+    <ui-selector-scenario
+      [scenarios]="scenarioList$ | async"
+      (selectedScenarioId)="this.actionSelectScenario$.next($event)"
+    ></ui-selector-scenario>
+  </div>
+
+  <div class="toolbar-panel" *ngIf="(uiShowPanel$ | async) === UIPanelEnum.SCENARIO_DETAILS">
+    <ui-details-scenario [scenario]="currentScenario"></ui-details-scenario>
+  </div>
+
+  <div class="toolbar-panel" *ngIf="(uiShowPanel$ | async) === UIPanelEnum.LAYER_SELECTOR">
+    <ui-selector-layers
+    [layers]="layers"
+    (selectedLayerId)="this.actionSelectedLayer$.next($event)"
+    ></ui-selector-layers>
+  </div>
+
+  <div class="toolbar-panel" *ngIf="(uiShowPanel$ | async) === UIPanelEnum.EVENT_SELECTOR">
+    <ui-selector-events [events]="events"></ui-selector-events>
+  </div>
+
   <div class="map" *ngIf="currentScenario">
     <map-container
       [mapDetails]="currentScenario.mapData"
-      [mapLayersData]="layers$ | async"
+      [mapLayersData]="layers"
     ></map-container>
   </div>
+  
 </div>
-
-<!-- TODO -->
-<!-- < overlay container to show modals - general form with content projection > -->
 
 <!-- <ui-general-form></ui-general-form> -->

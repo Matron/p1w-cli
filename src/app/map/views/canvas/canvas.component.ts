@@ -14,8 +14,8 @@ export class CanvasComponent implements AfterViewInit {
   // TODO: do we need this here?
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.canvas.nativeElement.width = window.innerWidth - 24;
-    this.canvas.nativeElement.height = window.innerHeight - 183;
+    this.canvas.nativeElement.width = window.innerWidth - 7;
+    this.canvas.nativeElement.height = window.innerHeight - 7;
   }
 
   ngAfterViewInit(): void {

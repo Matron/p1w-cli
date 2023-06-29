@@ -1,3 +1,5 @@
+$color-panel-background: black;
+
 .main {
   height: 100%;
   background-color: rgb(32, 32, 32);
@@ -15,13 +17,55 @@
   }
 
   .map {
-    height: calc(100% - 180px);
-    margin: 10px;
+    height: 100%;
     border: 1px solid lightgreen;
   }
 
-  .toolbar-item {
-    width: 220px;
-    min-width: 150px;
+  .clock {
+    position: absolute;
+    top: 15px;
+    left: calc(50% - 100px); 
+    width: 200px;
+    border: solid 1px;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 32px;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+
+    &-button {
+      border: 1px solid;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      text-align: center;
+      box-sizing: content-box;
+      background-color: $color-panel-background;
+
+      i {
+        line-height: 32px;
+        vertical-align: middle;
+      }
+    }
+
+    &-panel {
+      position: absolute;
+      top: 30px;
+      left: 90px;
+      padding: 20px;
+      width: 200px;
+      border: 1px solid;
+      border-radius: 20px;
+      background-color: $color-panel-background;
+    }
+
   }
 }

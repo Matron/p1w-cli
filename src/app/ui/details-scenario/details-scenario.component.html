@@ -1,8 +1,11 @@
 <div class="card">
   <h3>Scenario Details</h3>
-  <br />
-  <h4>Name: {{ scenario?.name }}</h4>
-  <h4>Description: {{ scenario?.description }}</h4>
-  <h4>Start Date: {{ scenario?.startDate }}</h4>
-  <h4>Primary sources: {{ scenario?.source }}</h4>
+  <ng-container *ngIf="scenario">
+    <br />
+    <h4>Name: {{ scenario.name }}</h4>
+    <h4>Description: {{ scenario.description }}</h4>
+    <h4>Start Date: {{ scenario.startDate }}</h4>
+    <h4>Primary sources: {{ scenario.source }}</h4>
+  </ng-container>
+
 </div>
