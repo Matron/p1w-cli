@@ -88,27 +88,27 @@ export class MapContainer extends Entity implements AfterViewInit, OnChanges {
       this._lastTimeStamp = Date.now();
       this._ngZone.runOutsideAngular(() => window.requestAnimationFrame(() => this.update()) );
   }
-
-  public onClick(e: MouseEvent): void {
-    this._mouseListener.onClick(e);
-  }
-  
-  public onMouseDown(e: MouseEvent): void {
-    this._mouseListener.onMouseDown(e);
-  }
   
   public onMouseLeave(e: MouseEvent): void {
     this._mouseListener.onMouseLeave(e);
   }
 
-  public onMouseMove(e: MouseEvent): void {
-    this._mouseListener.onMouseMove(e);
+  public onPointerDown(e: PointerEvent): void {
+    this._mouseListener.onMouseDown(e.clientX, e.clientY);
   }
   
-  public onMouseUp(e: MouseEvent): void {
+  public onPointerUp(e: PointerEvent): void {
     this._mouseListener.onMouseUp(e);
   }
 
+  public onPointerMove(e: PointerEvent): void {
+    this._mouseListener.onMouseMove(e.clientX, e.clientY);
+  }
+
+  public onTouchMove(e: TouchEvent): void {
+    this._mouseListener.onMouseMove(e.touches[0].clientX, e.touches[0].clientY);
+  }
+  
   public getOffset(): Vector2d {
     const pos = this._background?.getBackgroundPosition();
     return pos ? new Vector2d(pos.x, pos.y) : new Vector2d(0, 0);

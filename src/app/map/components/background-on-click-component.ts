@@ -27,9 +27,8 @@ export class BackgroundOnClickComponent extends OnClickComponent {
       this._offsetX =  localPoint.x - startPos.x;
       this._offsetY =  localPoint.y - startPos.y;
       this._dragging = true
-      console.log('offestX ', this._offsetX);
-      console.log('offestY ', this._offsetY);
-      
+      /* console.log('offestX ', this._offsetX);
+      console.log('offestY ', this._offsetY); */
     }
   }
 

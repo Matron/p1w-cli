@@ -36,8 +36,7 @@ export class EventsService {
 
   public updateEvents(time: number): void {
     const currentEvents = this.events$.value
-    console.log('update events');
-    
+
     let removedEvents = this._checkForOldEvents(time, currentEvents);
     let addedEvents = this._checkForNewEvents(time, currentEvents);
 

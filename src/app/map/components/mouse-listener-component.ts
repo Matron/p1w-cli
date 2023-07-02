@@ -4,6 +4,8 @@ import { Vector2d } from "@map/models/vector-2d";
 import { OnClickComponent } from "./on-click-component";
 import { MapContainer } from "@map/views/map/map.component";
 
+// Exposes pointer events generated on the attached entity html element
+// the events are passed to all pointer handler components that are subscribed
 export class MouseListenerComponent implements IComponent {
   entity: MapContainer | null;
 
@@ -17,21 +19,10 @@ export class MouseListenerComponent implements IComponent {
     this._subscribers.push(component);
   }
 
-  public onClick(e: MouseEvent): void {
-    const globalPoint = new Vector2d(e.clientX, e.clientY);
-    console.log('clicked at ' + globalPoint.x + ' ' + globalPoint.y);
-
-    const localPoint = this._calcLocalPointFrom(new Vector2d(e.clientX, e.clientY));
-    console.log('local pos is ' + localPoint?.x + ' ' + localPoint?.y );
+  public onMouseDown(clientX: number, clientY: number): void {
     
-    for (const comp of this._subscribers) {
-      comp.click(globalPoint, localPoint);
-    }
-  }
-
-  public onMouseDown(e: MouseEvent): void {
-    const globalPoint = new Vector2d(e.clientX, e.clientY);
-    const localPoint = this._calcLocalPointFrom(new Vector2d(e.clientX, e.clientY));
+    const globalPoint = new Vector2d(clientX, clientY);
+    const localPoint = this._calcLocalPointFrom(new Vector2d(clientX, clientY));
     for (const comp of this._subscribers) {
       comp.mouseDown(globalPoint, localPoint);
     }
@@ -45,9 +36,9 @@ export class MouseListenerComponent implements IComponent {
     }
   }
 
-  public onMouseMove(e: MouseEvent): void {
-    const globalPoint = new Vector2d(e.clientX, e.clientY);
-    const localPoint = this._calcLocalPointFrom(new Vector2d(e.clientX, e.clientY));
+  public onMouseMove(clientX: number, clientY: number): void {
+    const globalPoint = new Vector2d(clientX, clientY);
+    const localPoint = this._calcLocalPointFrom(new Vector2d(clientX, clientY));
     for (const comp of this._subscribers) {
       comp.mouseMove(globalPoint, localPoint);
     }
@@ -69,6 +60,5 @@ export class MouseListenerComponent implements IComponent {
       return new Vector2d(x, y)
     }
     return null;
-  } 
-  
+  }
 }

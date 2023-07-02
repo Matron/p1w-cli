@@ -17,6 +17,11 @@ replace arrays with maps in some cases?
 
 move observables declarations logic to contructor on app component
 
+rename onclick component method names, replace mouse for pointer, find common event interface for all methods (mouse, touch, pointer)
+
+
+
+
 Features:
 popup and modal generic components with content projection
 color theme

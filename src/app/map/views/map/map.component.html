@@ -1,7 +1,7 @@
 <map-canvas #mapCanvas
-  (click)="onClick($event)"
-  (mousedown)="onMouseDown($event)" 
-  (mouseup)="onMouseUp($event)"
-  (mousemove)="onMouseMove($event)"
+  (pointerdown)="onPointerDown($event)"
+  (pointerup)="onPointerUp($event)"
+  (pointermove)="onPointerMove($event)"
+  (touchmove)="onTouchMove($event)"
   (mouseleave)="onMouseLeave($event)"
 ></map-canvas>
